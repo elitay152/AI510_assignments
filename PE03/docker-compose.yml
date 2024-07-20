@@ -1,0 +1,17 @@
+version: '3'
+ 
+services:
+  jenkins:
+    container_name: 'jenkins-container'
+    privileged: true
+    build: .
+    ports:
+      - '8081:8080' # change the host port
+      - '50001:50000' # change the host port
+    volumes:
+      - ./jenkins_data:/var/jenkins_home   # modify host os folder which holds Jenkins data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+ 
+volumes:
+  myjenkins:
